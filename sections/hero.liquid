@@ -113,19 +113,6 @@
     assign fetch_priority = 'high'
   endif
 
-  assign use_product_fallback = false
-  assign fallback_product_count = 0
-  for product in collections.all.products limit: 2
-    if product.featured_image != blank
-      assign fallback_product_count = fallback_product_count | plus: 1
-    endif
-  endfor
-
-  if media_count == 0 and fallback_product_count > 0
-    assign use_product_fallback = true
-    assign media_count = fallback_product_count
-    assign media_count_mobile = 1
-  endif
 %}
 
 {% capture media_slot_1 %}
@@ -337,33 +324,12 @@
 {% endcapture %}
 
 {% capture media %}
-  {% if use_product_fallback %}
-    {% for product in collections.all.products limit: 2 %}
-      {% if product.featured_image != blank %}
-        <div class="hero__media-wrapper hero__media-wrapper--desktop">
-          {{
-            product.featured_image
-            | image_url: width: 1800
-            | image_tag:
-              width: product.featured_image.width,
-              height: product.featured_image.height,
-              alt: product.featured_image.alt | default: product.title,
-              class: 'hero__media',
-              widths: '600, 900, 1200, 1600, 1800',
-              sizes: '(min-width: 750px) 50vw, 100vw',
-              fetchpriority: fetch_priority
-          }}
-        </div>
-      {% endif %}
-    {% endfor %}
+  {% if media_count == 0 %}
+    {% render 'trophy-hero-scene' %}
   {% else %}
     {{ media_slot_1 }}
     {{ media_slot_2 }}
   {% endif %}
-
-  {% if media_count == 0 %}
-    {{ 'hero-apparel-1' | placeholder_svg_tag: 'hero__media' }}
-  {%- endif -%}
 {% endcapture %}
 
 {% capture media_blurred %}
