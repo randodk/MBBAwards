@@ -11,19 +11,6 @@
 
   <div class="trophy-hero-scene__stage">
     <div class="trophy-hero trophy-hero--left">
-      <model-viewer
-        class="trophy-hero__model"
-        src="{{ 'trophy.glb' | asset_url }}"
-        camera-orbit="-18deg 78deg 2.6m"
-        field-of-view="28deg"
-        auto-rotate
-        rotation-per-second="18deg"
-        interaction-prompt="none"
-        exposure="1.2"
-        shadow-intensity="1.1"
-        loading="eager"
-        alt=""
-      ></model-viewer>
       <svg viewBox="0 0 220 360" role="presentation">
         <defs>
           <linearGradient id="gold-left" x1="0" x2="1" y1="0" y2="1">
@@ -61,10 +48,14 @@
         auto-rotate
         rotation-per-second="12deg"
         interaction-prompt="none"
-        exposure="1.2"
-        shadow-intensity="1.1"
+        environment-image="neutral"
+        tone-mapping="neutral"
+        exposure="1.15"
+        shadow-intensity="1"
+        shadow-softness="0.9"
         loading="eager"
-        alt=""
+        reveal="auto"
+        alt="Gold trophy"
       ></model-viewer>
       <svg viewBox="0 0 220 360" role="presentation">
         <defs>
@@ -95,19 +86,6 @@
     </div>
 
     <div class="trophy-hero trophy-hero--right">
-      <model-viewer
-        class="trophy-hero__model"
-        src="{{ 'trophy.glb' | asset_url }}"
-        camera-orbit="18deg 78deg 2.6m"
-        field-of-view="28deg"
-        auto-rotate
-        rotation-per-second="-18deg"
-        interaction-prompt="none"
-        exposure="1.2"
-        shadow-intensity="1.1"
-        loading="eager"
-        alt=""
-      ></model-viewer>
       <svg viewBox="0 0 220 360" role="presentation">
         <defs>
           <linearGradient id="gold-right" x1="0" x2="1" y1="0" y2="1">
